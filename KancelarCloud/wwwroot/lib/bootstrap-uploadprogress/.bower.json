@@ -1,0 +1,34 @@
+{
+  "name": "bootstrap-uploadprogress",
+  "homepage": "https://github.com/jakobadam/bootstrap-uploadprogress",
+  "authors": [
+    "Jakob Aarøe Dam"
+  ],
+  "description": "Bootstrap Uploadprogress is a simple plugin to get an upload progressbar.",
+  "main": "src/bootstrap-uploadprogress.js",
+  "keywords": [
+    "bootstrap",
+    "fileupload",
+    "uploadprogress"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "_release": "d32169b7cf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d32169b7cf41597ff41ed6b74ff94a0572cdd444"
+  },
+  "_source": "https://github.com/jakobadam/bootstrap-uploadprogress.git",
+  "_target": "*",
+  "_originalSource": "bootstrap-uploadprogress"
+}

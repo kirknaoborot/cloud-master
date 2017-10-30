@@ -1,0 +1,145 @@
+﻿
+@model KancelarCloud.Models.ViewModels.IndexViewModel
+@{ 
+    ViewData["Title"] = Model.PageViewModel.NamePage;
+}
+
+<div id="InHtgi" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title h5">Введите номер документа из ХТГИ</h5>
+               
+            </div>
+            <div class="modal-body">
+               <input type="text" id="InputHTGI" class="form-control" placeholder="Пример: 001-9490/17-2-0"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class=" btn btn-primary" id="BtnHtgi">Загрузить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="previewForm">
+   
+</div>
+<div id="overlay">
+    <span id="close">X</span>
+</div>
+<div class="LeftPosition">
+    <div class="menu">
+        <ul id="navbar">
+
+            <li><a id="AllFile">Все файлы</a></li>
+
+            <li><a id="BasketFile">Корзина</a></li>
+
+            <li><a id="ClockFile">Недавние</a></li>
+
+            <li><a id="DownLoadHTGI">Загрузить из ХТГИ</a></li>
+        </ul>
+    </div>
+    <div class="left-menu">
+        <input type="hidden" id="selectpage" value=@Model.PageViewModel.NamePage>
+    </div>
+</div>
+ 
+<div class="TopPosition">
+
+    <div class="AddFileBlock">
+        
+   <img src="~/images/logo.png" />
+        <form  id="imageUploadForm" class="FormAdd" enctype="multipart/form-data">
+            <label class="btn btn-warning" id="btnclicklabel">
+                <input id="my-file-selector" type="file" name="uploadFile" style="display:none">
+                Загрузить
+            </label>
+        </form>
+    </div>
+
+    <div class="SearchBlock">
+        <form id="searchForm" method="post" class="Searchform">
+            <div class="src">
+                <input type="text" id="Selected" name="namefile" class="SearchInput" placeholder="Поиск...." />
+                <button type="button" id="searchf" class="Searchbutton">
+                    <span><i class="fa fa-search"></i></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+<div id="div1">
+    <div class="CenterPosition" id="result">
+        @foreach (var f in Model.FileVlojs)
+        {
+            <div class="hover" >
+                <div class="filevloj">
+                    @switch (f.Type)
+                    {
+                        case "application/octet-stream":
+                            <img src="~/images/rar.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+
+                        case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+                            <img src="~/images/word.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+
+                        case "application/msword":
+                            <img src="~/images/word.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+
+                        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+                            <img src="~/images/Excel.jpg" id="Imagetransfer" title="@f.FileName"/>;
+                            break;
+
+                        case "application/msaccess":
+                            <img src="~/images/access.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+                        case "audio/mp3":
+                            <img src="~/images/mp3.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+                        case "video/x-ms-wmv":
+                            <img src="~/images/WMV.png" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+
+                        case "application/pdf":
+                            <img src="~/images/pdf3.jpg" id="Imagetransfer" title="@f.FileName" />;
+                            break;
+                        default:
+                            <img src="@Url.Content(f.PathFileName)" id="Imagetransfer" title="@f.FileName"/>
+                            break;
+                    }
+                        <p>@f.FileName</p>
+                </div>
+            </div>
+            }
+    </div>
+</div>
+
+<div class="RightPosition">
+ 
+    <div class="infoblock">
+        <form id="deletef">
+        </form>
+    </div>
+<div class="InRightPosition">
+  <div class="RightImg">
+  </div>
+   
+    </div>
+    <div class="EmailForm" id="EmSend">
+        
+           <input type="text" name="Email[]" id="Email" placeholder="Email....."/>
+            <button type="button" id="org">
+                <span><i class="fa fa-bars"></i></span>
+            </button>
+           <button type="button" id="Send">Отправить</button>
+           
+    </div>
+  
+</div>

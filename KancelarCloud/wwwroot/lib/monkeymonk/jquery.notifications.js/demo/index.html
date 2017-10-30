@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+	<meta charset="UTF-8" />
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" /><![endif]-->
+	
+	<title>Demonstration • jquery.notifications.js - http://monkeymonk.be</title>
+	
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../jquery.notifications.css" rel="stylesheet" />
+
+	<style type="text/css">
+	.container{
+		padding: 10px 0;
+	}
+	</style>
+	
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+	<div class="container">
+	
+		<div class="hero-unit">
+			<h1>jquery.notifications.js <small>http://monkeymonk.be</small></h1>
+			<p>
+				Notifications system inspired by Growl
+			</p>
+			<p>
+				<a class="btn btn-primary" href="https://github.com/monkeymonk/jquery.notifications.js" rel="external"><i class="icon-download-alt icon-white"></i> GitHub project</a>
+			</p>
+		</div>
+		
+		<div class="btn-group">
+			<button class="btn btn-info" type="button">Add notification</button>
+			<button class="btn btn-primary" type="button" data-toggle="notification" data-title="Lorem ipsum" data-content="<b>Lorem ipsum</b> dolor sit amet..." data-sticky="false">Add notification (data-api)</button>
+			<button class="btn btn-warning" type="button">Remove last notification</button>
+			<button class="btn btn-danger" type="button">Remove all notifications</button>
+		</div>
+
+		<br/><br/>
+
+		<pre>
+			$('.btn-group')
+			.on('click', '.btn-info', function () {
+				$.notifications('add', {
+					title: 'Lorem ipsum',
+					content: '<b>Lorem ipsum</b> dolor sit amet...',
+					image: 'http://lorempixel.com/40/40/abstract/',
+					sticky: true
+				});
+			})
+			.on('click', '.btn-warning', function () {
+				$.notifications('remove');
+			})
+			.on('click', '.btn-danger', function () {
+				$.notifications('removeAll');
+			});
+		</pre>
+		
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="../jquery.notifications.js"></script>
+	<script type="text/javascript">
+	(function ($) {
+		'use strict';
+
+		$(function () { // short document ready
+			
+			$('.btn-group')
+			.on('click', '.btn-info', function () {
+				$.notifications('add', {
+					title: 'Lorem ipsum',
+					content: '<b>Lorem ipsum</b> dolor sit amet...',
+					image: 'http://lorempixel.com/40/40/abstract/',
+					sticky: true
+				});
+			})
+			.on('click', '.btn-warning', function () {
+				$.notifications('remove');
+			})
+			.on('click', '.btn-danger', function () {
+				$.notifications('removeAll');
+			});
+			
+		});
+	} (jQuery));
+	</script>
+</body>
+</html>

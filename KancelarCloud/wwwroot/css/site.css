@@ -1,0 +1,531 @@
+﻿html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #fff;
+    font-size:0.7vw;
+}
+
+footer {
+    text-align: center;
+    margin-top: 90%;
+    margin-bottom: 5%;
+}
+
+.TopPosition {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color: #3181e4;
+}
+
+
+.LeftPosition {
+    display: block;
+    position: absolute;
+    width: 10%;
+    right: 90%;
+    height: 85%;
+    top: 10%;
+    bottom: 5%;
+    background-color: #f1f1f1;
+    border-radius: 0 0 9px 0;
+    border: 1px solid #d8d8d8;
+    box-shadow: #d8d8d8 3px 5px 3px 1px;
+}
+
+#div1 {
+    position: absolute;
+    width: 70%;
+    left: 10%;
+    top: 10%;
+    right: 10%;
+    bottom: 5%;
+    height: 85%;
+
+}
+.CenterPosition {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    border:1px solid #d8d8d8;
+    overflow:auto;
+    border-radius:0 9px 9px 9px;
+    box-shadow:#d8d8d8 3px 5px 3px 1px;
+}
+
+.RightPosition {
+    position: absolute;
+    width: 20%;
+    left: 80%;
+    height: 85%;
+    top: 10%;
+    bottom: 5%;
+    margin-top: 0;
+    right: 0;
+    border-radius: 9px 0 0 9px;
+    box-shadow: #d8d8d8 3px 5px 3px 1px;
+    border: 1px solid #d8d8d8;
+}
+
+.InRightPosition {
+    position: absolute;
+    width: 98%;
+    left: 1%;
+    right: 1%;
+    height: 50%;
+    text-align:center;
+}
+
+.InRightPosition img {
+    left:10%;
+}
+
+.RightImg {
+    width: 90%;
+    height: 70%;
+    border-width:1px;
+    box-shadow:10px 10px 10px #777;
+    visibility:hidden;
+}
+
+.InRightPosition iframe {
+    transform: scale(1);
+
+    height: 70%;
+}
+.InRightPosition iframe[name="tiff"] img {
+    width: 50%;
+}
+
+
+.filevloj {
+    position: relative;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    bottom: 0;
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 1%;
+    border: 2px solid white;
+    border-radius: 5px 5px;
+    text-align: center;
+    
+    background-color: white;
+
+}
+
+    .filevloj img {
+        margin-top: 3%;
+        width: 80%;
+        height: 75%;
+        border-radius: 5px 5px 0 0;
+    }
+
+        .filevloj img:hover {
+            background-color: whitesmoke;
+            transition-duration: 0.4s;
+            opacity: 0.7;
+      
+        }
+
+
+    .filevloj p {
+        font-size:0.9vw;
+    }
+
+
+.hover {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+    height: 15%;
+    bottom: 0;
+    margin-top: 1%;
+    margin-left: 1%;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px 5px;
+    text-align: center;
+    overflow: hidden;
+    background-color: white;
+    box-shadow:5px 5px 10px #d8d8d8;
+    cursor:pointer;
+}
+
+.hover:hover{
+    background-color:whitesmoke;
+    transition-duration:0.4s;
+}
+
+
+    .btndelete :hover {
+        background: linear-gradient(#f5ae00, #f59500);
+    }
+
+    .btndelete :active {
+        background: linear-gradient(#f59500, #f5ae00);
+    }
+
+
+
+
+.infoblock {
+    position: absolute;
+    top: 55%;
+    width: 100%;
+
+}
+
+.infoblock > form
+{
+   
+    width:100%;
+    height:100%;
+}
+    .AddFileBlock {
+    width:50%;
+    height:100%;
+  
+}
+
+   
+
+.SearchBlock{
+    position:absolute;
+    width:50%;
+    height:100%;
+    left:50%;
+    top:0;
+    
+
+}
+
+.AddFileBlock form {
+    float:right;
+    padding-top:3%;
+   
+}
+
+
+.AddFileBlock img {
+ margin-top:3%;
+   background:white;
+   margin-left:0;
+   width:20%;
+}
+
+.btndel {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.7vw;
+    cursor: pointer;
+    width: 33%;
+    height: 40px;
+    float: left;
+}
+
+.btndel:hover {
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+
+.btndel:active {
+    background-color: white;
+   box-shadow:0 5px #666;
+   transform:translateY(4px);
+}
+
+
+.adel {
+    background-color: #4e85f6;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.7vw;
+    cursor: pointer;
+    width: 33%;
+    height: 40px;
+    display: inline-block;
+    padding-top:11px;
+    
+}
+
+    .adel:hover {
+        background-color: white;
+        border: 2px solid blue;
+        color: blue;
+        text-align: center;
+        text-decoration: none;
+        transition-duration: 0.4s;
+    }
+
+.adel:active {
+    background-color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+.Searchform {
+  
+    height:100%;
+    
+}
+
+.SearchInput {
+    height: 35%;
+    width: 44%;
+    margin-top: 4%;
+    float: left;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-left: 1%;
+    border: 1px solid #bdbbbb;
+    outline: none;
+    border-right: none;
+    color: #3181e4;
+   
+}
+
+input::-webkit-input-placeholder {
+    color: #3181e4
+}
+
+.Searchbutton {
+    width: 7%;
+    height: 35%;
+    float: left;
+    margin-top: 4%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid #bdbbbb;
+    background-color: white;
+    text-align: center;
+    color: #3181e4;
+    border-left: none;
+    outline: none;
+}
+
+.src{
+    width:81%;
+ margin-left:19%;
+ height:100%;
+}
+
+.BtnAdd {
+    border: none;
+    border-radius: 3px;
+    width: 28%;
+    height: 52%;
+    text-align: center;
+    float: right;
+    margin-top: 0;
+    padding-top: 2.5%;
+    background-color: white;
+    text-decoration: none;
+    color: #3181e4;
+    font-style: normal;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+    .BtnAdd:hover {
+        background-color: #3181e4;
+        color: white;
+        border: 1px solid white;
+        transition-duration: 0.4s;
+    }
+
+    .BtnAdd:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+.FormAdd{
+    width:50%;
+    height:100%;
+}
+
+.Preview {
+    background-color: #86dd82;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.7vw;
+    cursor: pointer;
+    width: 33%;
+    height: 40px;
+    
+}
+
+    .Preview:hover {
+        background-color: white;
+        border: 2px solid #86dd82;
+        color: lawngreen;
+        text-align: center;
+        text-decoration: none;
+        transition-duration: 0.4s;
+    }
+.Preview:active {
+    background-color: white;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.EmailForm 
+{
+    position:absolute;
+    height:7%;
+    width:100%;
+    top:70%;
+    visibility:hidden;
+}
+
+#Email {
+    height: 35px;
+    width: 60%;
+    float: left;
+    border: 1px solid #4e85f6;
+    border-right: none;
+    outline: none;
+    padding-left:2%;
+}
+
+#org {
+    height: 35px;
+    width: 10%;
+    text-align: center;
+    background-color: white;
+    text-decoration: none;
+    color: #4e85f6;
+    font-style: normal;
+    font-weight: 100;
+    cursor: pointer;
+    float: left;
+    border: 1px solid #4e85f6;
+    border-left: none;
+}
+
+#Send {
+    height: 35px;
+    border: none;
+    text-align: center;
+    background-color: #4e85f6;
+    text-decoration: none;
+    color: white;
+    font-style: normal;
+  
+    cursor: pointer;
+    width:27%;
+   
+}
+
+
+
+#overlay {
+    z-index: 3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+    position: fixed; /* всегдa перекрывaет весь сaйт */
+    background-color: black; /* чернaя */
+    opacity: 1; /* нo немнoгo прoзрaчнa */
+    filter: alpha(opacity=80);
+    width: 100%;
+    height: 100%; /* рaзмерoм вo весь экрaн */
+    top: 0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+    left: 0;
+    cursor: pointer;
+    display: none; /* в oбычнoм сoстoянии её нет) */
+}
+
+
+#previewForm {
+    width: 90%;
+    height: 90%; /* Рaзмеры дoлжны быть фиксирoвaны */
+    border-radius: 5px;
+    left:5%;
+    top:5%;
+    position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+    display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+    opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+    z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+
+
+}
+
+#previewForm iframe {
+    width:100%;
+    height:100%;
+
+}
+
+
+#close{
+    color:white;
+    float:right;
+    margin-right:2%;
+    margin-top:1%;
+    
+}
+
+.menu{
+  
+    width:100%;
+    height:70%;
+}
+
+.left-menu{
+    width:100%;
+    height:29%;
+    top:70%;
+   
+}
+#navbar {
+ 
+    padding:0;
+    list-style-type:none;
+}
+
+
+#navbar li {
+ width:100%;
+ margin-bottom:5%;
+ font-family:Verdana,Arial,Arial, Helvetica, sans-serif;
+}
+
+
+    #navbar li a {
+        display: block; /* Изменение отображения на блочное для того чтобы иметь возможность задать внутренние отступы. */
+        text-align:center;
+        padding-top:10%;
+        padding-bottom:10%;
+        background: #3181e4; /* Цвет блоков меню. */
+        color: white; /* Цвет текста в блоках меню. */
+        text-decoration: none; /* Устранение подчёркивания ссылок. */
+        position: relative; /* Это необходимо при использовании Internet Explorer 6 для того, чтобы ссылка по всей своей площади была «кликабельной».*/
+        cursor:pointer;
+}
+
+        #navbar li a:hover {
+            color: blue;
+            transition-duration: 0.4s;
+            background: #f1f1f1;
+        }
+
+       
+

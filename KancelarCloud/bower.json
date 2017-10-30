@@ -1,0 +1,24 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v3.3.7",
+    "jquery": "2.2.0",
+    "jquery-validation": "1.17.0",
+    "jquery-validation-unobtrusive": "3.2.6",
+    "jquery-ajax-unobtrusive": "3.2.4",
+    "bootstrap-btn-outline-rounded": "0.0.4",
+    "bootstrap-uploadprogress": "*",
+    "bootstrap-filestyle": "*",
+    "font-awesome": "~4.7.0",
+    "jquery-autocomplete": "1.1.1",
+    "jqueri-ui": "1.12.1",
+    "core": "0.0.9",
+    "noty": "~3.1.3"
+   
+  },
+  "resolutions": {
+    "jquery-validation": "1.17.0",
+    "jquery": ">=1.8"
+  }
+}

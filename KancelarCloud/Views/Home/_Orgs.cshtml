@@ -1,0 +1,43 @@
+﻿@model KancelarCloud.Models.ViewModels.IndexViewModel
+@{
+    ViewData["Title"] = "Справочник организаций";
+}
+
+
+   <div id="#Modal">
+    <input type="hidden" @*value="@Model.PageViewModel.PageNumber" *@ id="cnt" />
+    
+    <div class="manageButton">
+        <div class="NameTitle">
+            <p class="Spr">Справочник организаций</p>
+        </div>
+        <div class="btn-manage">
+            <button type="button" class="orgbutton" id="SendModal">Отправить</button>
+            <button type="button" class="orgbutton" id="selectedSend">Выбрать все</button>
+            <button type="button" class="orgbutton" id="AddOrg">Добавить</button>
+        </div>
+    </div>
+    <div class="OrgTable">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Удалить</th>
+                    <th class="text-center">Редактировать</th>
+                    <th>Наименование органа</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var o in Model.Orgs)
+            {
+                    <tr>
+                        <td class="text-center"><input type="checkbox" name="Email[]" value="@o.Email" id="check" /></td>
+                        <td class="text-center" id="DeleteOrg"><button type="button" value="@o.OrgId" id="DeleteSpr"><span><i class="fa fa-trash-o"></i></span></button></td>
+                        <td class="text-center" id="UpdateOrg"><button type="button"  value="@o.OrgId" id="UpdateSpr"><span><i class="fa fa-edit"></i></span></button></td>
+                        <td>@o.NameOrg</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

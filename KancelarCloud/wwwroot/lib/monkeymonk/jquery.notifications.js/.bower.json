@@ -1,0 +1,28 @@
+{
+  "name": "monkeymonk/jquery.notifications.js",
+  "main": [
+    "jquery.notifications.css",
+    "jquery.notifications.min.js"
+  ],
+  "description": "Notifications system inspired by Growl.",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "jquery": ">=1.2"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/monkeymonk/jquery.notifications.js",
+  "_release": "d27e9935cb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d27e9935cbc5204e5dff2524fdd649154b9fa1ce"
+  },
+  "_source": "https://github.com/monkeymonk/jquery.notifications.js.git",
+  "_target": "*",
+  "_originalSource": "jquery-notifications",
+  "_direct": true
+}
