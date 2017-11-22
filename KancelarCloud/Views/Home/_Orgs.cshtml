@@ -1,17 +1,108 @@
 ﻿@model KancelarCloud.Models.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Справочник организаций";
+    Layout = null;
 }
 
+<div id="updateOrg" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+    <span aria-hidden="true">&times;</span>
+</button>
+                <input type="text" class="hidden" id="inputid" value=""/>
+                <h5 class="h5">Обновление наименования</h5>
+            
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <label class="col-xs-4 ">Название организации:</label>
+                        <div class="col-xs-8">
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="updatenameorg" placeholder="Пример: Центр информационных технологий" value="">
+                                <span class="input-group-addon"><i class="fa fa-address-book"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-12">
+                        <label class="col-xs-4 col-form-label">Электронный адрес:</label>
 
+                        <div class="col-xs-8">
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="updatemail" placeholder="E-Mail Организации" value="">
+                                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class=" btn btn-primary" id="btnupdorg" data-dismiss="modal">Обновить</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div id="addOrg" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title h5">Добавить Организацию</h5> 
+            </div>
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-xs-12">
+                <label class="col-xs-4 ">Название организации:</label>
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="inputnameorg" placeholder="Пример: Центр информационных технологий">
+                        <span class="input-group-addon"><i class="fa fa-address-book"></i></span>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        <div class="form-group row">
+            <div class="col-xs-12">
+                <label class="col-xs-4 col-form-label">Электронный адрес:</label>
+                         
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="inputmail" placeholder="E-Mail Организации">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class=" btn btn-primary" id="btnaddorg" data-dismiss="modal">Добавить</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+     
    <div id="#Modal">
     <input type="hidden" @*value="@Model.PageViewModel.PageNumber" *@ id="cnt" />
-    
     <div class="manageButton">
         <div class="NameTitle">
             <p class="Spr">Справочник организаций</p>
         </div>
+        <div class="searchspr">
+            <input type="text" class="searchorg" placeholder="Начните вводить не меньше 3 -х символов" id="searchspr"/>
+        </div>
         <div class="btn-manage">
+          
             <button type="button" class="orgbutton" id="SendModal">Отправить</button>
             <button type="button" class="orgbutton" id="selectedSend">Выбрать все</button>
             <button type="button" class="orgbutton" id="AddOrg">Добавить</button>
@@ -33,11 +124,13 @@
                     <tr>
                         <td class="text-center"><input type="checkbox" name="Email[]" value="@o.Email" id="check" /></td>
                         <td class="text-center" id="DeleteOrg"><button type="button" value="@o.OrgId" id="DeleteSpr"><span><i class="fa fa-trash-o"></i></span></button></td>
-                        <td class="text-center" id="UpdateOrg"><button type="button"  value="@o.OrgId" id="UpdateSpr"><span><i class="fa fa-edit"></i></span></button></td>
-                        <td>@o.NameOrg</td>
+                        <td class="text-center" id="@o.OrgId"><button type="button"  value="@o.NameOrg" id="UpdateSpr" title="@o.Email"><span><i class="fa fa-edit"></i></span></button></td>
+                        <td id="Name">@o.NameOrg</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+<script src="~/js/Org.js"></script>

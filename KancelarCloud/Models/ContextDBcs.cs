@@ -8,16 +8,17 @@ namespace KancelarCloud.Models
 {
     public class ContextDBcs :DbContext
     {
-        public DbSet <FileVloj>FileVlojs { get; set; }
-        public DbSet <Org>Orgs { get; set; }
+        public DbSet<FileVloj> FileVlojs { get; set; }
+        public DbSet<Org> Orgs { get; set; }
 
 
-        public ContextDBcs(DbContextOptions<ContextDBcs>options)
-            :base (options)
+
+        public ContextDBcs(DbContextOptions<ContextDBcs> options)
+            : base(options)
         {
 
         }
 
-     
+
     }
 }

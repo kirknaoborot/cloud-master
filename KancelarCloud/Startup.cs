@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using KancelarCloud.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 namespace KancelarCloud
 {
@@ -38,7 +41,21 @@ namespace KancelarCloud
         public void ConfigureServices(IServiceCollection services)
         {
             string Connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<LoginContext>(options => options.UseSqlServer(Configuration.GetConnectionString("def")));
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 5;//минимальная длинна пароля
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<LoginContext>();
             services.AddDbContext<ContextDBcs>(options => options.UseSqlServer(Connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+            options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Logins");
+            });
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Logins");
             // Add framework services.
             services.Configure<FormOptions>(options =>
             {
@@ -67,7 +84,7 @@ namespace KancelarCloud
             }
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

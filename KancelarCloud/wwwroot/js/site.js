@@ -11,31 +11,31 @@ $('.CenterPosition').on('click', '.filevloj  img', function () {
         success: function (data) {
             switch (data.Type) {
                 case "application/pdf":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<iframe class="RightImg" id=' + data.Id + ' style="visibility:visible" src=' + data.PathFileName + '>' + '</iframe>';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<iframe class="RightImg" id=' + data.Id + ' style="visibility:visible" src=' + data.PathFileName + '>' + '</iframe>';
                     break;
 
                 case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/Excel.jpg" >';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/Excel.jpg" >';
                     break;
                 case "application/msaccess":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/access.jpg" > ';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/access.jpg" > ';
                     break;
                 case "application/octet-stream":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/rar.jpg" > ';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/rar.jpg" > ';
                     break;
                 case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/word.jpg" > ';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/word.jpg" > ';
                     break;
                 case "application/msword":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/word.jpg" > ';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src="/images/word.jpg" > ';
                     break;
                 case "image/tiff":
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible; overflow:auto" src=' + data.PathFileName + '>' + '</iframe>';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible; overflow:auto" src=' + data.PathFileName + '>' + '</iframe>';
                     break;
 
                 default:
 
-                    row = '<H4> Имя: ' + data.FileName + '</H4>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src=' + data.PathFileName + ' > ';
+                    row = '<H5> Имя: ' + data.FileName + '</H5>' + '<p> Размер файла:' + data.SizeFile + '</p>' + '<p> Дата создания:' + data.EnterDate + '</p>' + '<img class="RightImg" id=' + data.Id + ' style="visibility:visible" src=' + data.PathFileName + ' > ';
             }
             var btn = '<div class="form-group"><button type="button" id="del" class="btndel"' + '>' + "Удалить" + '</button>' + '<input name="Id" id="deletedoc" type="hidden" value=' + data.Id + '>' + '</>' + '<a class="adel" href="/Home/DownloadFile/' + data.Id + '">' + "Скачать" + '</a>' + '<button type="button" id="prev" class=Preview' + '>' + "Просмотр" + '</><div>';
             $(".InRightPosition").html(row);
@@ -202,57 +202,14 @@ function CompleteAdd() {
         $.ajax({
             url: '/Home/SendMessage',
             type: 'POST',
-            data: { id: id, Email: Email }
-        });
-    });
-
-    /*отправка на несколько адресов*/
-    $('.btn-manage').on('click', '#SendModal', function () {
-        var Email = $('#check:checked').map(function () { return this.value; }).get();
-        var id = $('#deletedoc').val();
-        $.ajax({
-            url: '/Home/SendMessage',
-            type: 'POST',
-            data: { id: id, Email: Email }
-        });
-    });
-    //модальное окно
-
-    $('.btn-manage').on('click', '#selectedSend', function () {
-        if ($('input:checkbox').is(':checked')) {
-            $('input:checkbox').prop('checked', false);
-        } else {
-            $('input:checkbox').prop('checked', true);
-        }
-
-    });
-
-
-    //Удаление из справочника
-    $('#result').on('click', '#DeleteSpr', function () {
-        var Id = $(this).val();
-        $.ajax({
-            url: '/Home/DeleteSpravochnik',
-            type: 'POST',
-            data: { Id: Id }
-        }).done(function (res) {
-            console.log(res);
-            if (res === "success") {
-                $('#result').empty();
-                $('#result').load("/Home/Org", '');
+            data: { id: id, Email: Email },
+            success: function (data) {
+                Send();
             }
-
-        }).fail(function () {
-            console.log("ошибка выполнения");
         });
     });
 
-    $('#result').on('click', '#UpdateSpr', function () {
-        var id = $(this).val();
-        $('[id=id]').css('visibility', 'visible');
-
-    });
-
+  
 
     /*корзина*/
     $('.LeftPosition').on('click', '#BasketFile', function () {
@@ -267,7 +224,7 @@ function CompleteAdd() {
     });
     function Trash() {
         new Noty({
-            type: 'warning',
+            type: 'error',
             layout: 'bottomCenter',
             text: 'Вы находитесь в разделе Корзина'
         }).show();
@@ -309,7 +266,13 @@ function CompleteAdd() {
             text: 'Вы находитесь в разделе Недавние'
         }).show();
     }
-
+    function Send() {
+        new Noty({
+            type: 'success',
+            layout: 'bottomCenter',
+            text: 'Выполнено успешно'
+        }).show();
+    }
 
     /*загрузить из хтги*/
 
@@ -319,6 +282,7 @@ function CompleteAdd() {
 
     });
     $('#InHtgi').on('click', '#BtnHtgi', function () {
+
         var num = $('#InputHTGI').val();
         $.ajax({
             url: '/Home/LoadHtgi/',
@@ -330,4 +294,32 @@ function CompleteAdd() {
         });
     });
 
- 
+
+    $('#Email').blur(function () {
+        if ($(this).val() != '') {
+            var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+            if (pattern.test($(this).val())) {
+                $(this).css({ 'border': '1px solid #569b44' });
+      
+
+            } else {
+                $(this).css({ 'border': '1px solid #ff0000' });
+            
+            }
+        }
+        else {
+
+            $(this).css({ 'border': '1px solid #ff0000' });
+        
+
+        }
+    });
+    
+
+
+
+
+
+
+  
+

@@ -13,11 +13,8 @@ namespace KancelarCloud.Models.HTGI
         public DbSet<IMAGE> IMAGES { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        
+        {    
                 optionsBuilder.UseSqlServer(@"Server=192.168.200.2;Database=templatedb;User Id=Anthony; Password=159;");
-
-         
         }
     }
 }

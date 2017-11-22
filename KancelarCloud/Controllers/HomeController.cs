@@ -14,29 +14,30 @@ using Microsoft.AspNetCore.Http.Features;
 using MimeKit;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
-
-
 using iTextSharp.LGPLv2;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-
-
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 namespace KancelarCloud.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        
         InternetAddressList internetAddressList = new InternetAddressList();
         ContextDBcs _context;
         IHostingEnvironment _appEnvironment;
+        private readonly UserManager<User> _userManager;
         public HomeController(ContextDBcs context, IHostingEnvironment appEnv)
         {
             _context = context;
             _appEnvironment = appEnv;
         }
-
+       
         public IActionResult Index()
         {
+           
             var model = new IndexViewModel()
             {
                 FileVlojs = _context.FileVlojs.Where(f => f.DeleteFile == false),
@@ -48,6 +49,7 @@ namespace KancelarCloud.Controllers
             return View(model);
 
         }
+        
         public IActionResult Trash()
         {
             var model = new IndexViewModel()
@@ -68,7 +70,7 @@ namespace KancelarCloud.Controllers
             {
                 FileVlojs = _context.FileVlojs.Where(f => f.EnterDate >= DateTime.Now.Date.AddDays(-7) && f.DeleteFile == false),
                 Orgs = _context.Orgs,
-                PageViewModel = new PageViewModel { NamePage="Недавние"}
+                PageViewModel = new PageViewModel { NamePage = "Недавние" }
             };
             return View("Index", model);
         }
@@ -84,7 +86,7 @@ namespace KancelarCloud.Controllers
             if (uploadFile != null)
             {
                 string path = "/Files/" + uploadFile.FileName.Replace(" ", string.Empty);//путь к папке
-                using (var filestream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create,FileAccess.Write))
+                using (var filestream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create, FileAccess.Write))
                 {
                     await uploadFile.CopyToAsync(filestream);
                 }
@@ -99,36 +101,37 @@ namespace KancelarCloud.Controllers
 
         public IActionResult DeleteFile(int Id)
         {
-            if (Id != 0)
-            {
-                FileVloj file = new FileVloj { Id = Id };
-                var fl = _context.FileVlojs.First(f => f.Id.Equals(Id));
-                if (fl.DeleteFile == true)
-
+            
+                if (Id != 0)
                 {
-                    string Delpath = fl.FileName.Replace(" ", string.Empty);
-                    string trash = "/Files/" + Delpath;
-                    var fullpath = _appEnvironment.WebRootPath + trash;
-                    _context.FileVlojs.Remove(fl);
-                    _context.SaveChanges();
-                    System.IO.File.Delete(fullpath);
-                    return RedirectToAction("Trash");
+                    FileVloj file = new FileVloj { Id = Id };
+                    var fl = _context.FileVlojs.First(f => f.Id.Equals(Id));
+                    if (fl.DeleteFile == true)
+
+                    {
+                        string Delpath = fl.FileName.Replace(" ", string.Empty);
+                        string trash = "/Files/" + Delpath;
+                        var fullpath = _appEnvironment.WebRootPath + trash;
+                        _context.FileVlojs.Remove(fl);
+                        _context.SaveChanges();
+                        System.IO.File.Delete(fullpath);
+                        return RedirectToAction("Trash");
+                    }
+                    else
+                    {
+                        fl.DeleteFile = true;
+                        string flpath = fl.FileName.Replace(" ", string.Empty);
+                        _context.FileVlojs.Update(fl);
+                        _context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
                 }
+
                 else
                 {
-                    fl.DeleteFile = true;
-                    string flpath = fl.FileName.Replace(" ", string.Empty);
-                    _context.FileVlojs.Update(fl);
-                    _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
-
-            }
-
-            else
-            {
-                return RedirectToAction("Index");
-            }
         }
         public IActionResult Error()
         {
@@ -151,6 +154,7 @@ namespace KancelarCloud.Controllers
 
         }
         /*Работает скачивание файла*/
+        [AllowAnonymous]
         public IActionResult DownloadFile(int Id)
         {
             if (Id != 0)
@@ -186,7 +190,8 @@ namespace KancelarCloud.Controllers
         /*работает отправка мыла*/
         public async Task<IActionResult> SendMessage(int id, string[] Email)
         {
-
+            var name = User.Identity.Name;
+            
             foreach (var em in Email)
             {
                 InternetAddress internetAddress = InternetAddress.Parse(ParserOptions.Default, em);
@@ -203,15 +208,26 @@ namespace KancelarCloud.Controllers
 
                 if (fileAttach.SizeFile > 20971520)
                 {
-                    await emailService.SendEmailAsync(internetAddressList, "Вложение",ip + "/Home/DownloadFile/" + id, null, null, null);
+                    await emailService.SendEmailAsync(internetAddressList, "Вложение", "http://" + ip + "/Home/DownloadFile/" + id, null, null, null);
                 }
                 else
                 {
                     await emailService.SendEmailAsync(internetAddressList, "Вложение", namefile, flpath, namefile, filestream);
                 }
 
+            }           
+            HelpDeskService hp = new HelpDeskService();
+            foreach (var email in Email)
+            {
+                Models.HelpDesk.HelpDeskContext context = new Models.HelpDesk.HelpDeskContext();
+
+                var uid = context.AspNetUsers.FromSql("SELECT Id FROM AspNetUsers WHERE UserName = {0}", name).First();
+                var fio = _context.Orgs.Where(f => f.Email.Contains(email)).First();
+                context.Database.CloseConnection();
+                hp.AddHelpDesk(name, email, fio.NameOrg,uid.Id);
+
             }
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
         }
         [HttpGet]
         /*Справочник организаций*/
@@ -228,39 +244,36 @@ namespace KancelarCloud.Controllers
             return View("_Orgs", modal);
 
         }
-        /*Не реализовано добавление с прваочник организаций*/
-        public IActionResult AddOrg(string Email, string nameorg)
+        /*добавление с прваочник организаций*/
+        public async Task<string> AddOrg(string Email, string nameorg)
         {
-            KancelarCloud.Models.Org org = new Models.Org { NameOrg = nameorg, Email = Email };
+            Models.Org org = new Models.Org { NameOrg = nameorg, Email = Email };
             _context.Orgs.Add(org);
-            _context.SaveChangesAsync();
-            return RedirectToAction("_Orgs");
+            await _context.SaveChangesAsync(true);
+            return "success";
         }
         /*работает Удаление из справочника орг*/
-        public string DeleteSpravochnik(int Id)
+        public async Task<string> DeleteSpravochnik(int Id)
         {
-            if (Id != 0)
-            {
-                var org = _context.Orgs.First(i => i.OrgId == Id);
-                _context.Orgs.Remove(org);
-                _context.SaveChangesAsync();
+    
+                var orgs = _context.Orgs.Where(f => f.OrgId == Id).First();
+                _context.Orgs.Remove(orgs);
+                await _context.SaveChangesAsync(true);
+                
                 return "success";
             }
-
-            else
-            {
-                return "Error";
-            }
-
-        }
+        
         /*не работает*/
-        public IActionResult UdpateOrg(string nameorg)
+        public async Task<string> UdpateOrg(int idin, string nameorg,string email)
         {
-            KancelarCloud.Models.Org org = new Models.Org { NameOrg = nameorg };
-            var updateorg = _context.Orgs.Where(o => o.NameOrg == nameorg).FirstOrDefault();
-            updateorg.NameOrg = nameorg;
-            _context.SaveChangesAsync();
-            return RedirectToAction("_Orgs");
+
+           Models.Org org =  _context.Orgs.First(f => f.OrgId.Equals(idin));
+
+            org.NameOrg = nameorg;
+            org.Email = email;
+            _context.Orgs.Update(org);
+            await _context.SaveChangesAsync();
+            return "success";
         }
         public void LoadHtgi(string num)
         {
@@ -292,7 +305,6 @@ namespace KancelarCloud.Controllers
                                 }
                             }
 
-
                             else
                             {
                                 var tempimage = iTextSharp.text.Image.GetInstance(vloj.First().DOCIMAGE);
@@ -322,9 +334,6 @@ namespace KancelarCloud.Controllers
                             }
 
                         }
-
-
-
                         else
                         {
                             var tempimage = iTextSharp.text.Image.GetInstance(vloj.First().DOCIMAGE);
@@ -361,15 +370,18 @@ namespace KancelarCloud.Controllers
 
 
                 }
-
-           
-
             }
 
         }
+
+        public string AutoSearchSpr(string nameorgspr)
+        {
+            
+                var result = _context.Orgs.Where(r => r.NameOrg.Contains(nameorgspr));
+               return   JsonConvert.SerializeObject(result);
+            }
     }
 
-       
             }
 
 

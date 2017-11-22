@@ -84,6 +84,11 @@ footer {
     text-align:center;
 }
 
+.InRightPosition h5{
+    font-size:0.9vw;
+    overflow-wrap:break-word;
+}
+
 .InRightPosition img {
     left:10%;
 }
@@ -136,13 +141,10 @@ footer {
             opacity: 0.7;
       
         }
-
-
     .filevloj p {
-        font-size:0.9vw;
+        font-size:0.8vw;
+         overflow-wrap:break-word;
     }
-
-
 .hover {
     display: inline-block;
     position: relative;
@@ -159,13 +161,10 @@ footer {
     box-shadow:5px 5px 10px #d8d8d8;
     cursor:pointer;
 }
-
 .hover:hover{
     background-color:whitesmoke;
     transition-duration:0.4s;
 }
-
-
     .btndelete :hover {
         background: linear-gradient(#f5ae00, #f59500);
     }
@@ -181,12 +180,10 @@ footer {
     position: absolute;
     top: 55%;
     width: 100%;
-
 }
 
 .infoblock > form
 {
-   
     width:100%;
     height:100%;
 }
@@ -196,16 +193,33 @@ footer {
   
 }
 
-   
-
 .SearchBlock{
     position:absolute;
-    width:50%;
+    width:25%;
     height:100%;
     left:50%;
     top:0;
-    
+}
 
+.login {
+    top:0;
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+  
+}
+
+.menulogin {
+    width:100%;
+    height:100%;
+    padding-top:8%;
+    padding-left:20%;
+}
+
+.zagmenu {
+    background-color:white;
+    color:blue;
 }
 
 .AddFileBlock form {
@@ -213,15 +227,12 @@ footer {
     padding-top:3%;
    
 }
-
-
 .AddFileBlock img {
  margin-top:3%;
    background:white;
    margin-left:0;
-   width:20%;
+   width:32%;
 }
-
 .btndel {
     background-color: #f44336;
     border: none;
@@ -234,7 +245,6 @@ footer {
     height: 40px;
     float: left;
 }
-
 .btndel:hover {
     background-color: white;
     border: 2px solid red;
@@ -243,14 +253,11 @@ footer {
     text-decoration: none;
     transition-duration: 0.4s;
 }
-
 .btndel:active {
     background-color: white;
    box-shadow:0 5px #666;
    transform:translateY(4px);
 }
-
-
 .adel {
     background-color: #4e85f6;
     border: none;
@@ -265,7 +272,6 @@ footer {
     padding-top:11px;
     
 }
-
     .adel:hover {
         background-color: white;
         border: 2px solid blue;
@@ -274,7 +280,6 @@ footer {
         text-decoration: none;
         transition-duration: 0.4s;
     }
-
 .adel:active {
     background-color: white;
     box-shadow: 0 5px #666;
@@ -290,8 +295,8 @@ footer {
 
 .SearchInput {
     height: 35%;
-    width: 44%;
-    margin-top: 4%;
+    width: 70%;
+    margin-top: 7%;
     float: left;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -302,16 +307,14 @@ footer {
     color: #3181e4;
    
 }
-
 input::-webkit-input-placeholder {
     color: #3181e4
 }
-
 .Searchbutton {
     width: 7%;
     height: 35%;
     float: left;
-    margin-top: 4%;
+    margin-top: 7%;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border: 1px solid #bdbbbb;
@@ -321,9 +324,8 @@ input::-webkit-input-placeholder {
     border-left: none;
     outline: none;
 }
-
 .src{
-    width:81%;
+width:81%;
  margin-left:19%;
  height:100%;
 }
@@ -400,7 +402,7 @@ input::-webkit-input-placeholder {
 
 #Email {
     height: 35px;
-    width: 60%;
+    width: 50%;
     float: left;
     border: 1px solid #4e85f6;
     border-right: none;
@@ -410,7 +412,7 @@ input::-webkit-input-placeholder {
 
 #org {
     height: 35px;
-    width: 10%;
+    width: 20%;
     text-align: center;
     background-color: white;
     text-decoration: none;
@@ -423,6 +425,10 @@ input::-webkit-input-placeholder {
     border-left: none;
 }
 
+#org i {
+    font-size:1.3vw;
+}
+
 #Send {
     height: 35px;
     border: none;
@@ -431,14 +437,14 @@ input::-webkit-input-placeholder {
     text-decoration: none;
     color: white;
     font-style: normal;
-  
     cursor: pointer;
     width:27%;
    
 }
+#Send:active {
 
-
-
+ background: linear-gradient(#f59500, #f5ae00) #f59500; 
+}
 #overlay {
     z-index: 3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
     position: fixed; /* всегдa перекрывaет весь сaйт */
@@ -452,8 +458,6 @@ input::-webkit-input-placeholder {
     cursor: pointer;
     display: none; /* в oбычнoм сoстoянии её нет) */
 }
-
-
 #previewForm {
     width: 90%;
     height: 90%; /* Рaзмеры дoлжны быть фиксирoвaны */
@@ -471,10 +475,7 @@ input::-webkit-input-placeholder {
 #previewForm iframe {
     width:100%;
     height:100%;
-
 }
-
-
 #close{
     color:white;
     float:right;
@@ -482,7 +483,6 @@ input::-webkit-input-placeholder {
     margin-top:1%;
     
 }
-
 .menu{
   
     width:100%;
@@ -500,15 +500,11 @@ input::-webkit-input-placeholder {
     padding:0;
     list-style-type:none;
 }
-
-
 #navbar li {
  width:100%;
  margin-bottom:5%;
  font-family:Verdana,Arial,Arial, Helvetica, sans-serif;
 }
-
-
     #navbar li a {
         display: block; /* Изменение отображения на блочное для того чтобы иметь возможность задать внутренние отступы. */
         text-align:center;
@@ -527,5 +523,5 @@ input::-webkit-input-placeholder {
             background: #f1f1f1;
         }
 
-       
-
+     
+     

@@ -3,7 +3,6 @@
 @{ 
     ViewData["Title"] = Model.PageViewModel.NamePage;
 }
-
 <div id="InHtgi" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -11,8 +10,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title h5">Введите номер документа из ХТГИ</h5>
-               
+                <h5 class="modal-title h5">Введите номер документа из ХТГИ</h5>              
             </div>
             <div class="modal-body">
                <input type="text" id="InputHTGI" class="form-control" placeholder="Пример: 001-9490/17-2-0"/>
@@ -47,12 +45,9 @@
         <input type="hidden" id="selectpage" value=@Model.PageViewModel.NamePage>
     </div>
 </div>
- 
 <div class="TopPosition">
-
-    <div class="AddFileBlock">
-        
-   <img src="~/images/logo.png" />
+    <div class="AddFileBlock">      
+   <img src="~/images/logo.svg" />
         <form  id="imageUploadForm" class="FormAdd" enctype="multipart/form-data">
             <label class="btn btn-warning" id="btnclicklabel">
                 <input id="my-file-selector" type="file" name="uploadFile" style="display:none">
@@ -60,7 +55,6 @@
             </label>
         </form>
     </div>
-
     <div class="SearchBlock">
         <form id="searchForm" method="post" class="Searchform">
             <div class="src">
@@ -68,11 +62,32 @@
                 <button type="button" id="searchf" class="Searchbutton">
                     <span><i class="fa fa-search"></i></span>
                 </button>
+               
             </div>
         </form>
-    </div>
-    
-</div>
+  
+        </div>
+    <div class="login">
+        <div class="menulogin">
+            <div class="btn-group">
+                <button type="button" data-toggle="dropdown" class="btn btn-warning   dropdown-toggle">
+                    Меню операций
+                    <span class="caret"></span>
+                 
+                </button>
+                <!-- Выпадающее меню -->
+                <ul class="dropdown-menu">
+                    <!-- Пункты меню -->
+                    <li><a href="#" class="text-center">@User.Identity.Name</a></li>
+                   
+                    <li class="divider"></li>
+                    <li><a href="/Account/Logout" class="text-center">Выход</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+       </div>
+
 <div id="div1">
     <div class="CenterPosition" id="result">
         @foreach (var f in Model.FileVlojs)
@@ -120,26 +135,22 @@
             }
     </div>
 </div>
-
 <div class="RightPosition">
- 
     <div class="infoblock">
         <form id="deletef">
         </form>
     </div>
 <div class="InRightPosition">
   <div class="RightImg">
-  </div>
-   
+  </div>   
     </div>
-    <div class="EmailForm" id="EmSend">
-        
-           <input type="text" name="Email[]" id="Email" placeholder="Email....."/>
+    <div class="EmailForm" id="EmSend">      
+           <input type="text" name="Email[]" id="Email" placeholder="Email.....">
             <button type="button" id="org">
-                <span><i class="fa fa-bars"></i></span>
+                <span><i class="fa fa-users"></i></span>
             </button>
-           <button type="button" id="Send">Отправить</button>
-           
-    </div>
-  
+           <button type="button" id="Send">Отправить</button>          
+    </div>  
 </div>
+
+
