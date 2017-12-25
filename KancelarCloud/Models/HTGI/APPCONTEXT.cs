@@ -14,7 +14,7 @@ namespace KancelarCloud.Models.HTGI
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {    
-                optionsBuilder.UseSqlServer(@"Server=192.168.200.2;Database=templatedb;User Id=Anthony; Password=159;");
+                optionsBuilder.UseSqlServer(@"Server=;Database=;User Id=; Password=;");
         }
     }
 }
